@@ -1,3 +1,4 @@
+# todo crear comentarios documentando todo el código
 def request_name(msg:str)->str:
 
     while True:

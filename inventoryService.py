@@ -1,5 +1,5 @@
 class InventoryService:
-
+    # todo crear comentarios documentando todo el código
     def __init__(self):
         self.products = {}
 
@@ -44,13 +44,10 @@ class InventoryService:
         print(f"{total:,.2f}")
         return total
 
+    #todo crear método para ver todo el inventario
+
 
     @staticmethod
     def _normalize(name: str) -> str:
         return name.strip().lower()
 
-# objeto = InventoryService()
-# objeto.add_product("Banana", 20000, 10)
-# objeto.add_product("Banana", 20000, 10)
-# objeto.add_product("Fresas", 20000, 20)
-# objeto.get_total()
