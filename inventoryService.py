@@ -9,7 +9,7 @@ class InventoryService:
             print(f"El producto '{name}' ya existe y no se agregó.")
             return
         self.products[key] = (price, amount)
-        print(f"Producto '{name}' agregado correctamente")
+        print(f"\nProducto '{name}' agregado correctamente")
 
     def get_product(self, name:str)->tuple:
         key:str = self._normalize(name)
@@ -25,7 +25,7 @@ class InventoryService:
         product:tuple = self.products.get(key)
         if product:
             del self.products[key]
-            print(f"Producto '{name}' eliminado correctamente")
+            print(f"\nProducto '{name}' eliminado correctamente")
         else:
             print(f"El producto '{name}' no existe.")
 
@@ -36,18 +36,26 @@ class InventoryService:
         if product:
             _, amount = product
             product = (new_price, amount)
-            print(f"Precio de '{name}' actualizado a {new_price:,.2f}")
             self.products[key] = product
+            print(f"Precio de '{name}' actualizado a {new_price:,.2f}")
 
     def get_total(self)-> float:
         total:float =  sum(price * amount for price, amount in self.products.values())
         print(f"{total:,.2f}")
         return total
 
-    #todo crear método para ver todo el inventario
+
+    def show_inventory(self)-> None:
+        if self.products:
+            print("Inventario:")
+            for name, (price, amount) in self.products.items():
+                print(f"{name}: {price:,.2f} x {amount}")
+        else:
+            print("El inventario está vacío")
+
+
 
 
     @staticmethod
     def _normalize(name: str) -> str:
         return name.strip().lower()
-

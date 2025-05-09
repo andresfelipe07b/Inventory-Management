@@ -4,7 +4,7 @@ def request_name(msg:str)->str:
     while True:
        try:
            name:str = input(msg).strip()
-           if not name.isnumeric() or len(name) < 1:
+           if name.replace(" ", "").isalpha():
                return name
            print(f"El nombre no debe estar vacío ni ser numérico.")
        except ValueError:
@@ -15,7 +15,7 @@ def request_price(msg:str)->float:
     while True:
        try:
            price:float = float(input(msg))
-           if price <= 0:
+           if price <= 1:
                 print(f"El precio debe ser mayor que 0.")
            else:
                 return price
@@ -26,8 +26,8 @@ def request_amount(msg:str)->int:
     while True:
        try:
            amount:int = int(input(msg))
-           if amount <= 0:
-                print(f"la cantidad debe ser mayor que 0.")
+           if not( 0 < amount <= 100000000) :
+                print(f"la cantidad debe ser mayor que 0 y menor que 100.000.000.")
            else:
                 return amount
        except ValueError:
