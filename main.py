@@ -1,56 +1,112 @@
-from inventoryService import InventoryService as Inventory
-from utils import request_name, request_amount, request_price
- #todo crear comentarios documentando todo el código
+from inventoryService import InventoryService as Inventory # Imports InventoryService class
+from utils import request_name, request_amount, request_price # Imports utils to validate inputs values
+from utils import GREEN, RED, YELLOW, RESET # Imports color constants for terminal output
 
 
+# ------------------- Product Handling Functions -------------------
 
-def handle_add_product(class_inventory:Inventory) -> None:
-    name: str = request_name("\nIngresa el nombre del producto: ")
-    price: float = request_price("Ingresa el precio del producto: ")
-    amount: int = request_amount("Ingresa la cantidad del producto: ")
+def handle_add_product(class_inventory: Inventory) -> None:
+    """
+    Collects product information from the user and adds it to the inventory.
+
+    Args:
+        class_inventory (Inventory): The inventory management object
+    """
+    name: str = request_name("\nEnter the product name: ")
+    price: float = request_price("Enter the product price: ")
+    amount: int = request_amount("Enter the product quantity: ")
     class_inventory.add_product(name, price, amount)
 
 
-def handle_get_product(class_inventory:Inventory) -> None:
-    name: str = request_name("\nIngresa el nombre del producto que deseas consultar: ")
+def handle_get_product(class_inventory: Inventory) -> None:
+    """
+    Asks for a product name and displays its details if found.
+
+    Args:
+        class_inventory (Inventory): The inventory management object
+    """
+    name: str = request_name("\nEnter the name of the product to search: ")
     product = class_inventory.get_product(name)
     if product != ():
-        print(f"Producto: \n Nombre:{name.lower()} \n Precio:{product[0]:,.2f}\n Cantidad:{product[1]}")
+        print(f"Product: \n Name: {name.lower()} \n Price: {product[0]:,.2f}\n Quantity: {product[1]}")
 
 
-def handle_remove_product(class_inventory:Inventory) -> None:
-    name: str = request_name("\nIngresa el nombre del producto que deseas eliminar: ")
+def handle_remove_product(class_inventory: Inventory) -> None:
+    """
+    Removes a product from the inventory by its name.
+
+    Args:
+        class_inventory (Inventory): The inventory management object
+    """
+    name: str = request_name("\nEnter the name of the product to remove: ")
     class_inventory.remove_product(name)
 
 
-def handle_update_price(class_inventory:Inventory) -> None:
-    name: str = request_name("\nIngresa el nombre del producto: ")
+def handle_update_price(class_inventory: Inventory) -> None:
+    """
+    Updates the price of an existing product.
+
+    Args:
+        class_inventory (Inventory): The inventory management object
+    """
+    name: str = request_name("\nEnter the product name: ")
     if class_inventory.get_product(name):
-        price: float = request_price("Ingresa el nuevo precio del producto: ")
+        price: float = request_price("Enter the new product price: ")
         class_inventory.update_price(name, price)
 
 
-def handle_get_total(class_inventory:Inventory):
-    total = class_inventory.get_total()
-    print(f"Valor total del inventario: {total:,.2f}")
+def handle_get_total(class_inventory: Inventory):
+    """
+    Displays the total value of the inventory.
 
-def handle_show_inventory(class_inventory:Inventory):
+    Args:
+        class_inventory (Inventory): The inventory management object
+    """
+    total = class_inventory.get_total()
+    print(f"Total inventory value: {total:,.2f}")
+
+
+def handle_show_inventory(class_inventory: Inventory):
+    """
+    Displays all products currently stored in the inventory.
+
+    Args:
+        class_inventory (Inventory): The inventory management object
+    """
     class_inventory.show_inventory()
 
-def menu() -> str:
-    print("\n1. Agregar producto")
-    print("2. Buscar producto")
-    print("3. Actualizar precio")
-    print("4. Eliminar producto")
-    print("5. Calcular valor total del inventario")
-    print("6. Mostrar inventario")
-    print("7. Salir")
-    return input(f"\ningresa una opción: ")
 
+# ------------------- Menu Interface -------------------
+
+def menu() -> str:
+    """
+    Displays the main menu and returns the selected option.
+
+    Returns:
+        str: User-selected menu option
+    """
+    print("\n╔════════════════ Options Menu ════════════════╗")
+    print("║                                              ║")
+    print("║  1. Add product                              ║")
+    print("║  2. Search product                           ║")
+    print("║  3. Update price                             ║")
+    print("║  4. Remove product                           ║")
+    print("║  5. Calculate total inventory value          ║")
+    print("║  6. Show inventory                           ║")
+    print("║  7. Exit                                     ║")
+    print("║                                              ║")
+    print("╚══════════════════════════════════════════════╝")
+    return input("\nChoose an option: ")
+
+
+# ------------------- Main Program -------------------
 
 def main():
+    """
+    Main function that runs the inventory management system.
+    """
     inventory = Inventory()
-    print("\nSistema de Gestión de Inventario")
+    print("\n--------Inventory Management System---------")
 
     break_loop: bool = False
     while not break_loop:
@@ -69,17 +125,12 @@ def main():
                 case "6":
                     handle_show_inventory(inventory)
                 case "7":
-                    print("\nSalida exitosa!")
+                    print("\nExited successfully!")
                     break_loop = True
                 case _:
-                    print("La opción que ingresaste no existe. Intentalo nuevamente")
+                    print(f"{YELLOW}Invalid option. Please try again.{RESET}")
         except ValueError:
-            print("Error: ingrese una opción valida")
+            print(f"{RED}Error: Please enter a valid option.{RESET}")
+
+# Run the program
 main()
-
-
-
-
-
-
-
