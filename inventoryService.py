@@ -3,33 +3,54 @@ class InventoryService:
     def __init__(self):
         self.products = {}
 
-    def add_product(self, name:str, price:float, amount:int):
-        for product in self.products.keys():
-            if product == name:
-                print(f"El {product} no se agregó debido a que ya existe")
-                return
-        self.products[name] = (price, amount)
-        print(f"Producto agregado correctamente")
+    def add_product(self, name:str, price:float, amount:int)-> None:
+        key: str = self._normalize(name)
+        if key in self.products.keys():
+            print(f"El producto '{name}' ya existe y no se agregó.")
+            return
+        self.products[key] = (price, amount)
+        print(f"Producto '{name}' agregado correctamente")
 
     def get_product(self, name:str)->tuple:
-        for product in self.products.keys():
-            if product == name:
-                return self.products[product]
-        print(f"El producto {name} no existe")
+        key:str = self._normalize(name)
+        product:tuple = self.products.get(key)
+        if product:
+            return product
+        print(f"No se encontró un producto con el nombre '{name}'.")
         return tuple()
 
-    def remove_product(self, name:str):
-        for product in self.products.keys():
-            if product == name:
-                del self.products[product]
-                print(f"El producto {name} se ha eliminado correctamente")
-                return
 
-    def update_product(self, name:str, price:float, amount:int):
-        for product in self.products.keys():
-            if product == name:
-                self.products[product] = (price, amount)
-                print(f"El producto {name} se ha actualizado correctamente")
+    def remove_product(self, name:str)-> None:
+        key:str = self._normalize(name)
+        product:tuple = self.products.get(key)
+        if product:
+            del self.products[key]
+            print(f"Producto '{name}' eliminado correctamente")
+        else:
+            print(f"El producto '{name}' no existe.")
 
 
+    def update_price(self, name:str, new_price:float)-> None:
+        key:str = self._normalize(name)
+        product:tuple = self.get_product(name)
+        if product:
+            _, amount = product
+            product = (new_price, amount)
+            print(f"Precio de '{name}' actualizado a {new_price:,.2f}")
+            self.products[key] = product
 
+    def get_total(self)-> float:
+        total:float =  sum(price * amount for price, amount in self.products.values())
+        print(f"{total:,.2f}")
+        return total
+
+
+    @staticmethod
+    def _normalize(name: str) -> str:
+        return name.strip().lower()
+
+# objeto = InventoryService()
+# objeto.add_product("Banana", 20000, 10)
+# objeto.add_product("Banana", 20000, 10)
+# objeto.add_product("Fresas", 20000, 20)
+# objeto.get_total()
