@@ -1,6 +1,6 @@
 from inventoryService import InventoryService as Inventory # Imports InventoryService class
 from utils import request_name, request_amount, request_price # Imports utils to validate inputs values
-from utils import GREEN, RED, YELLOW, RESET # Imports color constants for terminal output
+from utils import RED, YELLOW, RESET # Imports color constants for terminal output
 
 
 # ------------------- Product Handling Functions -------------------
