@@ -2,8 +2,8 @@
 🧾 **Sistema de Gestión de Inventario**  
 
 
-### 📘 **English version**
-[Click here to see the README in English](README.en.md)
+## 📘 English version
+[Click here to see the README in english version](README.en.md)
 ---
 
 ### 📌 **Descripción del Proyecto**
