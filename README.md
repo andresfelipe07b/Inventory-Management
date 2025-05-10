@@ -2,9 +2,10 @@
 🧾 **Sistema de Gestión de Inventario**  
 
 
-## 📘 **English version**
-[Click here to see the README in english version](README.en.md)
----
+### 📌 **English description**
+[Click here to see the English version](README.en.md)
+
+
 
 ### 📌 **Descripción del Proyecto**
 Este sistema de gestión de inventario permite realizar operaciones básicas de administración de productos en un inventario. Los usuarios pueden agregar productos, consultar su existencia, actualizar precios, eliminar productos y ver el valor total del inventario. El sistema valida las entradas de datos para asegurar que los valores sean correctos y se muestran mensajes informativos usando colores en la terminal.
