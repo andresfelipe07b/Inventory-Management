@@ -55,7 +55,7 @@ def handle_update_price(class_inventory: Inventory) -> None:
         class_inventory.update_price(name, price)
 
 
-def handle_get_total(class_inventory: Inventory):
+def handle_get_total(class_inventory: Inventory)-> None:
     """
     Displays the total value of the inventory.
 
@@ -66,7 +66,7 @@ def handle_get_total(class_inventory: Inventory):
     print(f"Total inventory value: {total:,.2f}")
 
 
-def handle_show_inventory(class_inventory: Inventory):
+def handle_show_inventory(class_inventory: Inventory)-> None:
     """
     Displays all products currently stored in the inventory.
 
@@ -101,7 +101,7 @@ def menu() -> str:
 
 # ------------------- Main Program -------------------
 
-def main():
+def main()-> None:
     """
     Main function that runs the inventory management system.
     """
