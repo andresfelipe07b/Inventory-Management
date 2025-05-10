@@ -2,7 +2,7 @@
 🧾 **Sistema de Gestión de Inventario**  
 
 
-## 📘 English version
+## 📘 **English version**
 [Click here to see the README in english version](README.en.md)
 ---
 
