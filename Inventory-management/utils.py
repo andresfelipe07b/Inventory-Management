@@ -1,10 +1,10 @@
 # ------------------- Input Validation Utilities -------------------
 
 # Color constants for terminal output
-RED = '\033[91m'
-GREEN = '\033[92m'
-YELLOW = '\033[93m'
-RESET = '\033[0m'
+RED:str = '\033[91m'
+GREEN:str = '\033[92m'
+YELLOW:str = '\033[93m'
+RESET:str = '\033[0m'
 
 def request_name(msg: str) -> str:
     """
