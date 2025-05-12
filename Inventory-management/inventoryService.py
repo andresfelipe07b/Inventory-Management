@@ -93,7 +93,7 @@ class InventoryService:
             for name, (price, amount) in self.products.items():
                 print(f"{name}: {price:,.2f} x {amount}")
         else:
-            print(f"{YELLOW}The inventory is empty.")
+            print(f"{YELLOW}The inventory is empty{RESET}.")
 
     @staticmethod
     def _normalize(name: str) -> str:
